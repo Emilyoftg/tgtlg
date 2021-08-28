@@ -50,7 +50,7 @@ class Progress:
             [
                 [
                     InlineKeyboardButton(
-                        "Cancel.",
+                        "⚠️ Cancel ⚠️",
                         callback_data=(
                             f"gUPcancel/{chat_id}/{mes_id}/{from_user}"
                         ).encode("UTF-8"),
@@ -59,7 +59,7 @@ class Progress:
             ]
         )
         if self.is_cancelled:
-            LOGGER.info("<b>Trying to stop...</b>")
+            LOGGER.info("<b>Trying To Stop...</b>")
             await self._mess.edit(
                 f"Cancelled/ERROR: `{ud_type}` ({humanbytes(total)})"
             )
