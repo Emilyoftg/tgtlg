@@ -76,25 +76,18 @@ class Progress:
             elapsed_time = TimeFormatter(milliseconds=elapsed_time)
             estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-            progress = "[{0}{1}] \nP: {2}%\n".format(
-                "".join(
-                    [FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]
-                ),
-                "".join(
-                    [
-                        UN_FINISHED_PROGRESS_STR
-                        for i in range(20 - math.floor(percentage / 5))
-                    ]
-                ),
-                round(percentage, 2),
-            )
-
-            tmp = progress + "{0} of {1}\nSpeed: {2}/s\nETA: {3}\n".format(
+            progress = "<b>✦━━✦ Status : Uploading 📤 ✦━━✦\n\n[ {0}{1} {2} ] </b>\n".format(
+                ''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]),
+                ''.join([UN_FINISHED_PROGRESS_STR for i in range(20 - math.floor(percentage / 5))]),
+                round(percentage, 2))
+            #cpu = "{psutil.cpu_percent()}%"
+            tmp = progress +"<b>\n• Total : <code>{1}</code>\n• Done : <code>{0}</code>\n• Speed : <code>{2}/s</code>🔺\n• ETA : <code>{3}</code>\n\n✦━━✦ Engine : Pyrogram ✦━━✦</b>".format(
                 humanbytes(current),
                 humanbytes(total),
                 humanbytes(speed),
                 # elapsed_time if elapsed_time != '' else "0 s",
                 estimated_total_time if estimated_total_time != "" else "0 s",
+            #tmp += "\n<b>✦━━✦ Engine : Pyrogram ✦━━✦</b>"
             )
             try:
                 if not self._mess.photo:
