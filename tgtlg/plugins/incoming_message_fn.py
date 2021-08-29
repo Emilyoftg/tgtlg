@@ -286,7 +286,7 @@ async def rename_tg_file(client, message):
                 message_id = final_response[key_f_res_se]
                 channel_id = str(message.chat.id)[4:]
                 private_link = f"https://t.me/c/{channel_id}/{message_id}"
-                message_to_send += "➪ <a href='"
+                message_to_send += "🗂 <a href='"
                 message_to_send += private_link
                 message_to_send += "'>"
                 message_to_send += local_file_name
@@ -294,10 +294,10 @@ async def rename_tg_file(client, message):
                 message_to_send += "\n"
             if message_to_send != "":
                 mention_req_user = (
-                    f"{mplink}: <b>Your requested files:</b>\n\n"
+                    f"{mplink}: <b>UPLOADED SUCCESSFULLY 😇</b>\n\n"
                 )
                 message_to_send = mention_req_user + message_to_send
-                message_to_send = message_to_send + "\n\n" + "<b>Enjoy.</b>"
+                message_to_send = message_to_send + "\n\n" + "<b>#Uploaded</b>"
             else:
                 message_to_send = "<b>Failed</b> to upload files."
             await message.reply_text(
