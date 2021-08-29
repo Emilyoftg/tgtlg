@@ -6,7 +6,11 @@
   Please take into account that this branch is currently in development.
   
   Everything in this branch subject to change.
-  
+
+## Deploy
+
+<p><a href="https://heroku.com/deploy?template=https://github.com/reaitten/tgtlg"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200""/></a></p>
+
   
   ## Credits
   - [GautamKumar](https://github.com/gautamajay52/TorrentLeech-Gdrive)
