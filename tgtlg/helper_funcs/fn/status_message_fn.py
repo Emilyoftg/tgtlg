@@ -77,21 +77,21 @@ async def status_message_f(client, message):  # weird code but 'This is the way'
             if file.status == "active":
                 is_file = file.seeder
                 if is_file is None:
-                    msgg = f"<b>Connections: {file.connections}</b>"
+                    msgg = f"<b>\n• Connections : {file.connections}</b>"
                 else:
-                    msgg = f"<b>Seeders:</b> {file.num_seeders} | <b>Peers:</b> {file.connections}"
+                    msgg = f"<b>\n• Info :[ P: {file.connections} ║ S: {file.num_seeders} ]\n• GID : <code>{file.gid}</code></b>"
 
                 dnld_complete = convert_size(round(convert_to_bytes(file.total_length_string()) * (float(re.sub("[^0-9.]", "", file.progress_string()))/100),2))
                 percentage = int(file.progress_string(0).split('%')[0])
                 prog = "[{0}{1}]".format("".join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]),"".join([UN_FINISHED_PROGRESS_STR for i in range(20 - math.floor(percentage / 5))]))
 
-                msg += f"\n<b>Filename:</b> <code>{downloading_dir_name}</code>\n"
-                msg += f"\n<b>{prog}</b> <code>{file.progress_string()}</code>"
-                msg += f"\n<b>Downloaded</b>: <code>{dnld_complete} of {file.total_length_string()}</code>"
-                msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
-                msg += f"\n<b>ETA:</b> {file.eta_string()}"
-                msg += f"\n{msgg}"
-                msg += f"\n<b>GID:</b> <code>{file.gid}</code>\n"
+                msg = f"\n<b>✦━━✦ Status : Dowloading 📥 ✦━━✦\n</b>"
+                msg += f"\n<b>• FileName : `{downloading_dir_name}`</b>"
+                msg += f"\n\n<b>[ {prog}` {file.progress_string()}` ]\n</b>"
+                msg += f"\n<b>• Speed : `{file.download_speed_string()}`</b>"
+                msg += f"\n<b>• Size : `{file.total_length_string()}`</b>"
+                msg += f"\n<b>• Downloded : `{file.progress_string()}`\n• ETA : `{file.eta_string()}`{msgg}\n</b>"
+                msg += f"\n<b>✦━━✦ Engine : Aria2 ✦━━✦</b>"
 
             # tried, just ends up with duplicated 'completed' downloads
             # maybe need time to wait then remove "file.status == complete"
@@ -109,11 +109,13 @@ async def status_message_f(client, message):  # weird code but 'This is the way'
         free = humanbytes(free)
 
         ms_g = (
-            f"<b>Bot Uptime</b>: <code>{hr}h{mi}min{se}sec</code>\n"
-            f"<b>Total disk space</b>: <code>{total}</code>\n"
-            f"<b>Used</b>: <code>{used}</code>\n"
-            f"<b>Free</b>: <code>{free}</code>\n"
-            f"<b><b>CPU:</b> <code>{cpu}%</code> | RAM:</b> <code>{ram}%</code> \n"
+            f"<b>╭───「  ⭕️ BOT STATISTICS ⭕️  」\n│\n</b>' 
+            f"<b>├  ⏰ Bot Uptime : {hr} : {mi} : {se}\n│\n</b>"
+            f"<b>├  💾 Total Disk Space : {total}\n│\n</b>"
+            f"<b>├  📀 Total Used Space : {used}\n│\n</b>"
+            f"<b>├  💿 Total Free Space : {free}\n│\n</b>"
+            f"<b>├  💡 CPU : {cpu} % | 🎚️ RAM : {ram} %\n│\n</b>"
+            f"<b>╰───「 🚸 TEAM DEV 🚸 」</b>"
         )
         if msg == "":
             stmsg = "No Active, Queued or Paused Torrents."
